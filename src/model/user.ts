@@ -4,7 +4,7 @@ const userEnum = {
     FEMALE: 'female',
     MALE: 'male'
 }
-interface IUser {
+export interface IUser {
     firstName: string;
     lastName: string;
     gender?: string;

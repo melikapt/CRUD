@@ -1,5 +1,8 @@
 {
     "required_error":"فیلد موردنظر اجباری است",
     "min_phone_length":"حداقل یک شماره تلفن وارد کنید",
-    "min_mobile_length":"حداقل یک موبایل وارد کنید"
+    "min_mobile_length":"حداقل یک موبایل وارد کنید",
+    "not_exist_users":"کاربری وجود ندارد",
+    "find_users":"کاربران با موفقیت یافت شدند",
+    "server_error":"خطای سرور داخلی"
 }
