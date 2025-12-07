@@ -2,7 +2,7 @@ import {ZodObject,ZodError} from "zod";
 import {Request,Response,NextFunction} from "express";
 
 export const validate = (schema:ZodObject)=>{
-    async(req:Request,res:Response,next:NextFunction)=>{
+    return async(req:Request,res:Response,next:NextFunction)=>{
         try {
             await schema.parseAsync({
                 body:req.body,

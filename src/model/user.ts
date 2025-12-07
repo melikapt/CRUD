@@ -26,7 +26,7 @@ const userSchema = new Schema<IUser>({
     },
     contactId: {
         type: String,
-        required: true
+        // required: true
     }
 },
     {
