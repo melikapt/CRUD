@@ -8,4 +8,9 @@ export const userSchema = z.object({
     // contactId: z.string(/*{ error: message.required_error }*/)
 })
 
+export const updateUserSchema = z.object({
+    firstName: z.string(),
+    lastName: z.string(),
+})
+
 export type User = z.infer<typeof userSchema>;
