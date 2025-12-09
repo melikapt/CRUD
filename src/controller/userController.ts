@@ -32,3 +32,13 @@ export const createUser  =async(req:Request,res:Response,next:NextFunction)=>{
         throw new Error(`something failed : ${error}`);
     }
 }
+
+export const updateUser = async (req:Request,res:Response,next:NextFunction)=>{
+    try {
+        const result = await updateUser(req.body);
+        res.status(result.statusCode).json(result);
+    } catch (error) {
+        console.log("🚀 ~ updateUser ~ error:", error)
+        throw new Error(`something failed : ${error}`)
+    }
+}
