@@ -1,13 +1,9 @@
 import express from "express";
-import { validate } from "../middleware/validateData";
-import { getUsers, getUser, createUser, updateUser, deleteUser } from "../controller/userController";
-import { userSchema, updateUserSchema } from "../schema/userSchema";
+import {userController} from '../injection/injection';
 
 const router = express.Router();
 
-router.get('/', getUsers);
-router.get('/:id', getUser);
-router.post('/create', validate(userSchema), createUser);
-router.put('/:id', validate(updateUserSchema), updateUser);
-router.delete('/:id', deleteUser);
+router.get('/:id', userController.getUser);
+router.post('/create', userController.createUser);
+
 export default router;
