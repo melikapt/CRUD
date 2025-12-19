@@ -1,7 +1,6 @@
 import message from "../helper/message.json";
 import { User } from "../model/user";
 import { IUpdateUser } from "../interface/userInterface";
-import { success } from "zod";
 
 export const getUsersService = async () => {
     try {
@@ -49,7 +48,7 @@ export const getUserService = async (userId: string) => {
         return {
             success: true,
             statusCode: 200,
-            message: message.not_find_user,
+            message: message.find_user,
             data: user
         };
     } catch (error) {
