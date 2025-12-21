@@ -2,10 +2,15 @@ import { IUserRepository, IUserInfoWithoutId, IUserInfo } from '../services/user
 import { User } from './user';
 
 export class UserRepository implements IUserRepository {
+    async deleteUser(userId: string): Promise<void> {
+        await User.findByIdAndDelete(userId);
+    }
+    async getUsers(): Promise<IUserInfo[]> {
+        return await User.find();
+    }
     async createUser(userInfo: IUserInfoWithoutId): Promise<void> {
         await User.create(userInfo);
     }
-
     async getUserById(userId: string): Promise<IUserInfo> {
         const user = await User.findById(userId)
         if (!user) {

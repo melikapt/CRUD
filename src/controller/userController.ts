@@ -15,13 +15,24 @@ export class UserController {
         const result = await this.userService.getUserById(userId);
         res.status(200).json(result)
     }
-
     createUser = async (req: Request, res: Response) => {
-        const {firstName,lastName} = req.body;
-        if(!firstName || !lastName){
+        const { firstName, lastName } = req.body;
+        if (!firstName || !lastName) {
             throw new Error("enter firstName and lastName!");
         }
-         await this.userService.createUser({firstName,lastName});
-        res.status(200).json({message:'user created'})
+        await this.userService.createUser({ firstName, lastName });
+        res.status(200).json({ message: 'user created' })
+    }
+    getUsers = async (req:Request,res: Response) => {
+        const result = await this.userService.getUsers();
+        res.status(200).json(result);
+    }
+    deleteUser = async (req: Request, res: Response) => {
+        const userId = req.params.id;
+        if (!userId) {
+            throw new Error("please enter userId");
+        }
+        await this.userService.deleteUser(userId);
+        res.status(200).json({ message: 'user deleted' });
     }
 }
