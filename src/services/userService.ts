@@ -13,7 +13,7 @@ export interface IUserRepository {
     getUserById(userId: string): Promise<IUserInfo>;
     getUsers(): Promise<IUserInfo[]>;
     deleteUser(userId: string): Promise<void>;
-    updateUser(userInfo: IUserInfo):Promise<IUserInfo>;
+    updateUser(userInfo: IUserInfo):Promise<void>;
 }
 
 

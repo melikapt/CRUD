@@ -35,4 +35,13 @@ export class UserController {
         await this.userService.deleteUser(userId);
         res.status(200).json({ message: 'user deleted' });
     }
+    updateUser = async (req:Request,res:Response)=>{
+        const userId = req.params.id;
+        if(!userId){
+            throw new Error('please enter userId');
+        }
+        const {firstName,lastName}=req.body;
+        await this.userService.updateUser({firstName,lastName,userId});
+        res.status(200).json({message:'user updated'});
+    }
 }

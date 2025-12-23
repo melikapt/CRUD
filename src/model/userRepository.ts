@@ -2,6 +2,12 @@ import { IUserRepository, IUserInfoWithoutId, IUserInfo } from '../services/user
 import { User } from './user';
 
 export class UserRepository implements IUserRepository {
+    async updateUser(userInfo: IUserInfo): Promise<void> {
+        const updatedUser = await User.findByIdAndUpdate(userInfo.userId,{firstName:userInfo.firstName,lastName:userInfo.lastName});
+        if(!updatedUser){
+            throw new Error("user not found");
+        }
+    }
     async deleteUser(userId: string): Promise<void> {
         await User.findByIdAndDelete(userId);
     }
