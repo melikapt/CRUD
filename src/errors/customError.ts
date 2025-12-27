@@ -1,4 +1,4 @@
-interface ICustomError {
+export interface ICustomError {
     message: string;
     context?: { [key: string]: any }
 }

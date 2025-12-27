@@ -9,6 +9,7 @@ export interface IUser {
     lastName: string;
     gender?: string;
     contactId: string;
+    password: string;
 }
 
 const userSchema = new Schema<IUser>({
@@ -27,6 +28,10 @@ const userSchema = new Schema<IUser>({
     contactId: {
         type: String,
         // required: true
+    },
+    password: {
+        type: String,
+        required: true
     }
 },
     {

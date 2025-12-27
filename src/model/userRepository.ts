@@ -3,8 +3,8 @@ import { User } from './user';
 
 export class UserRepository implements IUserRepository {
     async updateUser(userInfo: IUserInfo): Promise<void> {
-        const updatedUser = await User.findByIdAndUpdate(userInfo.userId,{firstName:userInfo.firstName,lastName:userInfo.lastName});
-        if(!updatedUser){
+        const updatedUser = await User.findByIdAndUpdate(userInfo.userId, { firstName: userInfo.firstName, lastName: userInfo.lastName });
+        if (!updatedUser) {
             throw new Error("user not found");
         }
     }
@@ -12,10 +12,10 @@ export class UserRepository implements IUserRepository {
         await User.findByIdAndDelete(userId);
     }
     async getUsers(): Promise<IUserInfo[]> {
-        return await User.find();
+        return await User.find().select('_id firstName lastName');
     }
-    async createUser(userInfo: IUserInfoWithoutId): Promise<void> {
-        await User.create(userInfo);
+    async createUser(userInfo: IUserInfoWithoutId, password: string): Promise<void> {
+        await User.create({ firstName: userInfo.firstName, lastName: userInfo.lastName, password });
     }
     async getUserById(userId: string): Promise<IUserInfo> {
         const user = await User.findById(userId)

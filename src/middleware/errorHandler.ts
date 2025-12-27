@@ -1,7 +1,12 @@
 import { NextFunction, Response, Request } from "express";
+import { CustomError } from "../errors/customError";
 
 export function errorHandler(err: Error, req: Request, res: Response, next: NextFunction) {
     console.error(`Global error handler caught : ${err}`);
+
+    if(err instanceof CustomError){
+        res.status(err.statusCode).json({errors:err.errors})
+    }
 
     const errDetails = {
         message: err.message,

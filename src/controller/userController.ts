@@ -1,5 +1,6 @@
 import { Request, Response, NextFunction } from "express";
 import { UserService } from "../services/userService";
+import {BadRequestError} from "../errors/badRequestError";
 
 
 export class UserController {
@@ -16,11 +17,11 @@ export class UserController {
         res.status(200).json(result)
     }
     createUser = async (req: Request, res: Response) => {
-        const { firstName, lastName } = req.body;
-        if (!firstName || !lastName) {
-            throw new Error("enter firstName and lastName!");
+        const { firstName, lastName, password } = req.body;
+        if (!firstName || !lastName || !password) {
+            throw new BadRequestError({message:'Enter firstName & lastName & password'})
         }
-        await this.userService.createUser({ firstName, lastName });
+        await this.userService.createUser({ firstName, lastName},password);
         res.status(200).json({ message: 'user created' })
     }
     getUsers = async (req:Request,res: Response) => {
