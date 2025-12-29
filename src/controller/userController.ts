@@ -3,13 +3,14 @@ import { UserService } from "../services/userService";
 import { BadRequestError } from "../errors/badRequestError";
 import { IResult } from "../common/interfaces";
 import { IUserInfo } from "../services/userService";
+import { ICustomResponse } from "../middleware/sendRequest";
 
 
 export class UserController {
     constructor(
         private readonly userService: UserService
     ) { }
-    getUser = async (req: Request, res: Response) => {
+    getUser = async (req: Request, res: ICustomResponse) => {
 
         const userId = req.params.id
         if (!userId) {
@@ -29,7 +30,7 @@ export class UserController {
             message: 'user found',
             data: result,
         }
-        res.status(200).json(response)
+        res.sendResponse({...response,status:200});
     }
     createUser = async (req: Request, res: Response) => {
         const { firstName, lastName, password } = req.body;

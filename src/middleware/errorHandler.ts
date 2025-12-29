@@ -26,3 +26,4 @@ export function errorHandler(err: Error, req: Request, res: Response, next: Next
 
     res.status(statusCode).json({ success: false, message });
 }
+

@@ -27,6 +27,7 @@ export class UserService {
         private readonly hashProvider: IHashProvider,
     ) { }
     createUser = async (userInfo: IUserInfoWithoutId, password: string) => {
+        // do you need it(hash) in another domain?
         const hashedPassword = await this.hashProvider.hash(password);
         console.log("🚀 ~ UserService ~ hashedPassword:", hashedPassword)
         await this.userRepository.createUser(userInfo, hashedPassword);
