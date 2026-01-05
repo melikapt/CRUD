@@ -32,7 +32,7 @@ export class UserController {
         }
         res.sendResponse({...response,status:200});
     }
-    createUser = async (req: Request, res: Response) => {
+    createUser = async (req: Request, res: ICustomResponse) => {
         const { firstName, lastName, password } = req.body;
         if (!firstName || !lastName || !password) {
             const response: IResult<void> = {
@@ -50,7 +50,8 @@ export class UserController {
             message: 'user created',
             data: null
         }
-        res.status(200).json(response);
+        res.sendResponse({...response,status:200});
+        // res.status(200).json(response);
     }
     getUsers = async (req: Request, res: Response) => {
         const result = await this.userService.getUsers();

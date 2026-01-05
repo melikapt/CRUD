@@ -1,4 +1,4 @@
-import express from "express";
+import express, { NextFunction,Response,Request } from "express";
 import { connectToDB } from "./db/mongoose";
 import userRoute from "./routes/user";
 import { errorHandler } from "./middleware/errorHandler";
@@ -12,6 +12,10 @@ connectToDB();
 app.use(express.json());
 app.use(sendResponse);
 app.use("/user", userRoute);
+
+app.use((req:Request,res:Response,next:NextFunction)=>{
+    res.status(404).json("page not found");
+})
 
 app.use(errorHandler);
 
