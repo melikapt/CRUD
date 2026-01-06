@@ -4,7 +4,8 @@ import message from "../helper/message.json";
 export const userSchema = z.object({
     firstName: z.string({ error: message.required_error }),
     lastName: z.string({ error: message.required_error }),
-    gender: z.enum(['female', 'male'], { error: message.invalid_gender }),
+    password:z.string({ error: message.required_error }),
+    // gender: z.enum(['female', 'male'], { error: message.invalid_gender }),
     // contactId: z.string(/*{ error: message.required_error }*/)
 })
 
