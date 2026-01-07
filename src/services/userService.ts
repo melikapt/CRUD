@@ -42,6 +42,13 @@ export class UserService {
         await this.userRepository.deleteUser(userId);
     }
     updateUser = async (userInfo: IUserInfo) => {
+        const user = await this.userRepository.getUserById(userInfo.userId);
+        if(user.firstName.length < 5 && userInfo.firstName.length < 5){
+            throw new Error(`Your new firstName should be more than 5 character`);
+        }
+        if(user.firstName.length > 5 && userInfo.firstName.length > 5){
+            throw new Error(`Your new firstName should be less than 5 character`);
+        }
         await this.userRepository.updateUser(userInfo);
     }
 }

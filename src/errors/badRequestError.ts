@@ -12,6 +12,6 @@ export class BadRequestError extends CustomError {
             context: params?.context || {}
         }]
 
-        Object.setPrototypeOf(this, BadRequestError.prototype);
+        // Object.setPrototypeOf(this, BadRequestError.prototype);
     }
 }

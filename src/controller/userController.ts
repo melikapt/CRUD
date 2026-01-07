@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { Request } from "express";
 import { UserService } from "../services/userService";
 import { BadRequestError } from "../errors/badRequestError";
 import { IResult } from "../common/interfaces";
@@ -30,7 +30,7 @@ export class UserController {
             message: 'user found',
             data: result,
         }
-        res.sendResponse({...response,status:200});
+        res.sendResponse({ ...response, status: 200 });
     }
     createUser = async (req: Request, res: ICustomResponse) => {
         const { firstName, lastName, password } = req.body;
@@ -50,19 +50,18 @@ export class UserController {
             message: 'user created',
             data: null
         }
-        res.sendResponse({...response,status:200});
-        // res.status(200).json(response);
+        res.sendResponse({ ...response, status: 200 });
     }
-    getUsers = async (req: Request, res: Response) => {
+    getUsers = async (req: Request, res: ICustomResponse) => {
         const result = await this.userService.getUsers();
         const response: IResult<IUserInfo[]> = {
             hasError: false,
             message: 'users found',
             data: result
         }
-        res.status(200).json(response);
+        res.sendResponse({ ...response, status: 200 });
     }
-    deleteUser = async (req: Request, res: Response) => {
+    deleteUser = async (req: Request, res: ICustomResponse) => {
         const userId = req.params.id;
         if (!userId) {
             const response: IResult<void> = {
@@ -79,9 +78,9 @@ export class UserController {
             message: 'user deleted',
             data: null
         }
-        res.status(200).json(response);
+        res.sendResponse({ ...response, status: 200 });
     }
-    updateUser = async (req: Request, res: Response) => {
+    updateUser = async (req: Request, res: ICustomResponse) => {
         const userId = req.params.id;
         if (!userId) {
             const response: IResult<IUserInfo> = {
@@ -99,6 +98,6 @@ export class UserController {
             message: 'user updated',
             data: null
         }
-        res.status(200).json(response);
+        res.sendResponse({ ...response, status: 200 });
     }
 }
